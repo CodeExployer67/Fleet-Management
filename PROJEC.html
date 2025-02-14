@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fleet Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+            transition: background 0.5s ease-in-out;
+        }
+        .header {
+            background: linear-gradient(90deg, #ff5722, #795548);
+            color: white;
+            padding: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .nav {
+            display: flex;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .nav a:hover {
+            color: #ffd700;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            margin: 20px;
+            border: 4px solid #ff5722;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        .map {
+            height: 350px;
+            border: 4px solid #bf360c;
+            border-radius: 8px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .chatbox {
+            width: 400px;
+            height: 300px;
+            border: 4px solid #ff5722;
+            border-radius: 12px;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .chatbox textarea {
+            width: 100%;
+            height: 80%;
+            border: none;
+            resize: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #ff5722;
+        }
+        .chatbox button {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .chatbox button:hover {
+            background: #795548;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <div class="header">
+        <div class="title">🚛 AI Fleet Management System 🚛</div>
+        <div class="nav">
+            <a href="#traffic">Traffic</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact Info</a>
+        </div>
+    </div>
+    <div class="container">
+        <p>Advanced real-time tracking, predictive maintenance, and optimized route planning</p>
+        <div class="dashboard">
+            <div class="card">
+                <h2>🚗 Vehicle Tracking</h2>
+                <div id="map" class="map"></div>
+                <p>Vehicle ID: 12345</p>
+                <p>Current Speed: <span id="speed">60 km/h</span></p>
+                <p>Location: Phagwara, Jalandhar</p>
+                <p>Status: In Transit</p>
+            </div>
+            <div class="card" id="traffic">
+                <h2>🚦 Traffic Updates</h2>
+                <p>Current congestion: Moderate</p>
+                <p>Accident reports: None</p>
+                <p>Weather impact: Light rain, roads clear</p>
+            </div>
+            <div class="card" id="features">
+                <h2>⭐ Features</h2>
+                <p>✔ AI-powered vehicle tracking</p>
+                <p>✔ Predictive maintenance alerts</p>
+                <p>✔ Real-time traffic monitoring</p>
+                <p>✔ Route optimization for fuel efficiency</p>
+            </div>
+            <div class="card" id="contact">
+                <h2>📞 Contact Info</h2>
+                <p>Email: support@fleetai.com</p>
+                <p>Phone: +1 800-123-4567</p>
+                <p>Address: Jalandhar, Punjab, India</p>
+            </div>
+        </div>
+        <div class="chatbox">
+            <textarea id="chat" placeholder="Chat with fleet AI..."></textarea>
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([31.2200, 75.7708], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.marker([31.2200, 75.7708]).addTo(map).bindPopup("Vehicle Location: Phagwara, Jalandhar").openPopup();
+        
+        function sendMessage() {
+            var chatBox = document.getElementById("chat");
+            if(chatBox.value.trim() !== "") {
+                alert("You: " + chatBox.value);
+            }
+            chatBox.value = "";
+        }
+    </script>
+</body>
+</html>
